@@ -82,7 +82,8 @@ function pushed(code) {
     }
     // テストモード
     if (qarray[trackPtr][0] != code) {
-        let missed = [["", interactiveDic[code][0]], ["", buzzerSound]];
+        let intonationIdx = salvageIntonation(qarray[trackPtr][1]);
+        let missed = [["", interactiveDic[code][intonationIdx]], ["", buzzerSound]];
         panelStatus(false);
         phimon.playPhonemes(missed, nullCallBack);
         G.body.style = "background-color: #CCCDFF";
@@ -111,6 +112,11 @@ function displayAnswer() {
         result.push(a[0]);
     }
     G.messageArea.innerHTML = "答えは " + result.join("-") + " です。";
+}
+
+function salvageIntonation(path) {
+    let m = path.match(/([1-4])\.mp3/);
+    return Number(m[1]) - 1;
 }
 
 function panelStatus(val) {
