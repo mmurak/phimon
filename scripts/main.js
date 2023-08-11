@@ -22,6 +22,9 @@ for (let ent of soundArray) {
 // Entry point is here
 function startGame() {
     G.body.style = "background-color: pink";
+    for(let e of soundArray) {  // 学習再生中にスタートボタン押さえた際の追加対処
+        document.getElementById(e[0]).style = "background-color: none";
+    }
     G.mode.checked = true;
     G.testStart.disabled = true;
     G.replay.disabled = false;
