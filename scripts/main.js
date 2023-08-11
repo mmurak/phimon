@@ -21,6 +21,7 @@ for (let ent of soundArray) {
 
 // Entry point is here
 function startGame() {
+    G.messageArea.innerHTML = "";
     G.body.style = "background-color: pink";
     for(let e of soundArray) {  // 学習再生中にスタートボタン押さえた際の追加対処
         document.getElementById(e[0]).style = "background-color: none";
@@ -69,6 +70,7 @@ function nextStageCallBack() {
 
 function pushed(code) {
     if (!G.panelEnabled)  return;
+    G.messageArea.innerHTML = "";
     // 学習モード
     if (!G.mode.checked) {
         panelStatus(false);
@@ -88,6 +90,7 @@ function pushed(code) {
         G.testStart.disabled = false;
         G.replay.disabled = true;
         G.mode.disabled = false;
+        displayAnswer();
     } else {
         let good = [qarray[trackPtr]];
         trackPtr++;
@@ -100,6 +103,14 @@ function pushed(code) {
             phimon.playPhonemes(good, nullCallBack);
         }
     }
+}
+
+function displayAnswer() {
+    result = [];
+    for(a of qarray) {
+        result.push(a[0]);
+    }
+    G.messageArea.innerHTML = "答えは " + result.join("-") + " です。";
 }
 
 function panelStatus(val) {

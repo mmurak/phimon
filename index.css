@@ -68,3 +68,8 @@ body{
 .switch-checkbox label {
     margin-left: 1rem;
 }
+
+#messageArea{
+    font-size: 150%;
+    text-align: center;
+}
