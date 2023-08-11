@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Phimon</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+        <link rel="shortcut icon" href="./kiwi-bird.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body id="body">
+        <div class="switch-checkbox">
+            <label for="mode">学習モード</label>
+            <input type="checkbox" disabled id="mode">
+            <label for="mode">テストモード</label>
+            <span style="float: right">
+                <label for="novice">通常</label>
+                <input type="checkbox" id="novice"></input>
+                <label for="novice">初心者</label>
+            </span>
+        </div>
+        <input type="button" id="testStart" value="スタート！" onclick="startGame();"></input>
+        <input type="button" id="replay" style="float: right" disabled value="もう1回聞く" onclick="replaySound();"></input>
+        <div id="scoreArea">
+        <span id="level">0</span><label for="level">連鎖目</label>
+        </div>
+        <!--input type="radio" name="intonation" checked value="midLevel">Mid-Level</input>
+        <input type="radio" name="intonation" value="fall">Fall</input>
+        <input type="radio" name="intonation" value="rise">Rise</input>
+        <input type="radio" name="intonation" value="riseFall">Rise Fall</input-->
+        <table id="table">
+            <tr><td class="tdata tdactive" id="i" onclick="pushed('i');">i</td>
+                <td class="tdata"></td>
+                <td class="tdata"></td>
+                <td class="tdata tdactive" id="u" onclick="pushed('u');">u</td></tr>
+            <tr><td class="tdata tdactive" id="ɪ" onclick="pushed('ɪ');">ɪ</td>
+                <td class="tdata"></td>
+                <td class="tdata tdactive" id="ʊ" onclick="pushed('ʊ');">ʊ</td>
+                <td class="tdata"></td></tr>
+            <tr><td class="tdata tdactive" id="ɛ" onclick="pushed('ɛ');">ɛ</td>
+                <td class="tdata tdactive" id="ə" onclick="pushed('ə');">ə</td>
+                <td class="tdata"></td>
+                <td class="tdata tdactive" id="ɔ" onclick="pushed('ɔ');">ɔ</td></tr>
+            <tr><td class="tdata tdactive" id="æ" onclick="pushed('æ');">æ</td>
+                <td class="tdata tdactive" id="a" onclick="pushed('a');">a</td>
+                <td class="tdata tdactive" id="ɑ" onclick="pushed('ɑ');">ɑ</td>
+                <td class="tdata tdactive" id="ɒ" onclick="pushed('ɒ');">ɒ</td></tr>
+        </table>
+        <script src="./scripts/GlobalManager.js"></script>
+        <script src="./scripts/Parameters.js"></script>
+        <script src="./scripts/sequencer.js"></script>
+        <script src="./scripts/main.js"></script>
+    </body>
+</html>
