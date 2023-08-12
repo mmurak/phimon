@@ -5,6 +5,7 @@ let qarray = null;
 
 let trackPtr = 0;
 
+let param = location.search;
 
 let studyDic = {};
 let interactiveDic = {};
@@ -30,7 +31,7 @@ function startGame() {
     G.testStart.disabled = true;
     G.replay.disabled = false;
     G.mode.disabled = true;
-    qno = 1;
+    qno = (param != "") ? Number(param.substring(1)) : 1;
     G.level.innerHTML = qno;
     restartGame();
 }
@@ -82,16 +83,16 @@ function pushed(code) {
     }
     // テストモード
     if (qarray[trackPtr][0] != code) {
+        displayAnswer();
         let intonationIdx = salvageIntonation(qarray[trackPtr][1]);
         let missed = [["", interactiveDic[code][intonationIdx]], ["", buzzerSound]];
+        qarray = [qarray[trackPtr], ["", interactiveDic[code][intonationIdx]]];
         panelStatus(false);
         phimon.playPhonemes(missed, nullCallBack);
         G.body.style = "background-color: #CCCDFF";
         G.mode.checked = false;
         G.testStart.disabled = false;
-        G.replay.disabled = true;
         G.mode.disabled = false;
-        displayAnswer();
     } else {
         let good = [qarray[trackPtr]];
         trackPtr++;
