@@ -10,13 +10,13 @@
     let callBackFn;
 
     function colorChanger(pointer) {
-        if (G.mode.checked && !G.novice.checked) return;
+        if ((G.mode.value == "X") && !G.novice.checked) return;
         if (seqOfPhonemes[pointer][0] != "") {
             document.getElementById(seqOfPhonemes[pointer][0]).style = "background-color: #75FF7C";
         }
     }
     function colorReset() {
-        if (G.mode.checked && !G.novice.checked) return;
+        if ((G.mode.value == "X") && !G.novice.checked) return;
         if (seqOfPhonemes[currentPointer-1][0] != "") {
             document.getElementById(seqOfPhonemes[currentPointer-1][0]).style = "background-color: none";
         }

@@ -8,17 +8,18 @@
     </head>
     <body id="body">
         <div class="switch-checkbox">
-            <label for="mode">学習モード</label>
-            <input type="checkbox" disabled id="mode">
-            <label for="mode">テストモード</label>
+            <select id="mode" onchange="dispatcher();">
+                <option value="S" selected>学習モード（short）</option>
+                <option value="F" >学習モード（full）</option>
+                <option value="X" >テスト開始！</option>
+            </select>
             <span style="float: right">
                 <label for="novice">通常</label>
                 <input type="checkbox" id="novice"></input>
                 <label for="novice">初心者</label>
             </span>
         </div>
-        <input type="button" id="testStart" value="スタート！" onclick="startGame();"></input>
-        <input type="button" id="replay" style="float: right" disabled value="もう1回聞く" onclick="replaySound();"></input>
+        <input type="button" id="replay" disabled value="もう1回聞く" onclick="replaySound();"></input>
         <div id="scoreArea">
         <span id="level">0</span><label for="level">連鎖目</label>
         </div>

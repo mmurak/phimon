@@ -24,6 +24,11 @@ body{
   font-size: 150%;
   text-align: center;
 }
+
+select{
+  position: relative;
+  font-size: 100%;
+}
 .switch-checkbox {
     margin-bottom: 1rem;
 }

@@ -19,6 +19,11 @@ for (let ent of soundArray) {
     interactiveDic[e0].push(ent[1]);
 }
 
+function dispatcher() {
+    if (G.mode.value == "X") {
+        startGame();
+    }
+}
 
 // Entry point is here
 function startGame() {
@@ -27,10 +32,8 @@ function startGame() {
     for(let e of soundArray) {  // 学習再生中にスタートボタン押さえた際の追加対処
         document.getElementById(e[0]).style = "background-color: none";
     }
-    G.mode.checked = true;
-    G.testStart.disabled = true;
-    G.replay.disabled = false;
     G.mode.disabled = true;
+    G.replay.disabled = false;
     qno = (param != "") ? Number(param.substring(1)) : 1;
     G.level.innerHTML = qno;
     restartGame();
@@ -73,7 +76,14 @@ function pushed(code) {
     if (!G.panelEnabled)  return;
     G.messageArea.innerHTML = "";
     // 学習モード
-    if (!G.mode.checked) {
+    if (G.mode.value == "S") {
+        panelStatus(false);
+        qarray = [studyDic[code][0]];
+        qno = qarray.length;
+        panelStatus(false);
+        phimon.playPhonemes(qarray, callBack);
+        return;
+    } else if (G.mode.value == "F") {
         panelStatus(false);
         qarray = studyDic[code];
         qno = qarray.length;
@@ -90,8 +100,7 @@ function pushed(code) {
         panelStatus(false);
         phimon.playPhonemes(missed, nullCallBack);
         G.body.style = "background-color: #CCCDFF";
-        G.mode.checked = false;
-        G.testStart.disabled = false;
+        G.mode.value = "S";
         G.mode.disabled = false;
     } else {
         let good = [qarray[trackPtr]];
