@@ -19,24 +19,19 @@ for (let ent of soundArray) {
     interactiveDic[e0].push(ent[1]);
 }
 
-function dispatcher() {
-    if (G.mode.value == "X") {
-        startGame();
-    }
-}
-
 // Entry point is here
 function startGame() {
     G.messageArea.innerHTML = "";
     G.body.style = "background-color: pink";
-    for(let e of soundArray) {  // 学習再生中にスタートボタン押さえた際の追加対処
+    for(let e of soundArray) {  // 学習再生中にスタートボタン押された際の追加対処
         document.getElementById(e[0]).style = "background-color: none";
     }
     G.mode.disabled = true;
     G.replay.disabled = false;
+    phimon.playPhonemes([["", chimeSound]], restartGame);
     qno = (param != "") ? Number(param.substring(1)) : 1;
     G.level.innerHTML = qno;
-    restartGame();
+//    restartGame();
 }
 
 function restartGame() {
@@ -90,6 +85,10 @@ function pushed(code) {
         panelStatus(false);
         phimon.playPhonemes(qarray, callBack);
         return;
+    } else if ((G.mode.value == "X") && (!G.inTest)) {
+        G.inTest = true;
+        startGame();
+        return;
     }
     // テストモード
     if (qarray[trackPtr][0] != code) {
@@ -122,6 +121,7 @@ function displayAnswer() {
         result.push(a[0]);
     }
     G.messageArea.innerHTML = "答えは " + result.join("-") + " です。";
+    G.inTest = false;
 }
 
 function salvageIntonation(path) {

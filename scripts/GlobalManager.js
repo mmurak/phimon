@@ -9,5 +9,6 @@ class GlobalManager {
         this.auxAudio = new Audio();
         this.level = document.getElementById("level");
         this.messageArea = document.getElementById("messageArea");
+        this.inTest = false;
     }
 }
